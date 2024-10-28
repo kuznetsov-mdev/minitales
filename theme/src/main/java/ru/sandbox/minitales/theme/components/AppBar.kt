@@ -43,8 +43,7 @@ fun Appbar(
 }
 
 @Composable
-@Preview(showBackground = true)
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@MiniTalesPreview
 fun AppbarPreview(modifier: Modifier = Modifier) {
     MiniTalesTheme {
         Surface {
