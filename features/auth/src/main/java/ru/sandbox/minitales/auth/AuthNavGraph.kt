@@ -2,7 +2,9 @@ package ru.sandbox.minitales.auth
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import ru.sandbox.minitales.auth.splash.SplashScreen
 
 const val authRoute = "auth"
 
@@ -17,6 +19,8 @@ fun NavGraphBuilder.authNavGraph(
     navController: NavController
 ) {
     navigation(startDestination = AuthScreen.Splash.route, route = authRoute) {
-
+        composable(AuthScreen.Splash.route) {
+            SplashScreen()
+        }
     }
 }
