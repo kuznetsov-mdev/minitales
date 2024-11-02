@@ -32,7 +32,7 @@ import ru.sandbox.minitales.theme.components.MiniTalesPreview
 
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier) {
-
+    Login()
 }
 
 @Composable
@@ -63,6 +63,7 @@ fun Login() {
         AppTextField(
             value = "1234",
             label = R.string.password,
+            isPasswordField = true,
             hint = "password",
             leadingIcon = Icons.Filled.Lock,
             imeAction = ImeAction.Done,
