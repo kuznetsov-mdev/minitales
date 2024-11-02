@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email">email</string>
+    <string name="password">password\n</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="click_here_to_reset">click here to reset</string>
+    <string name="dont_have_account">don\'t have the account</string>
+    <string name="agriment">By logging in or signing up you agree to our Terms and Conditions</string>
+</resources>
