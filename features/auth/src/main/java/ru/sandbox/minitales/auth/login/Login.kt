@@ -25,18 +25,28 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.compose.MiniTalesTheme
 import ru.sandbox.minitales.auth.R
+import ru.sandbox.minitales.auth.login.data.LoginUiEvent
+import ru.sandbox.minitales.auth.login.data.LoginUiState
 import ru.sandbox.minitales.theme.components.AppTextField
 import ru.sandbox.minitales.theme.components.MiniTalesPreview
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier) {
-    Login()
+fun LoginScreen(viewModel: LoginViewModel) {
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
+    Login(
+        uiState = uiState.value,
+        onEvent = { viewModel.onUiEvent(it) }
+    )
 }
 
 @Composable
-fun Login() {
+fun Login(
+    uiState: LoginUiState,
+    onEvent: (LoginUiEvent) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -52,22 +62,22 @@ fun Login() {
         )
 
         AppTextField(
-            value = "belal@gmail.com",
+            value = uiState.email,
             label = R.string.email,
             hint = "yourname@domain.com",
             leadingIcon = Icons.Filled.Email,
             imeAction = ImeAction.Next,
-            onValueChanged = {}
+            onValueChanged = { onEvent(LoginUiEvent.EmailChanged(it)) }
         )
 
         AppTextField(
-            value = "1234",
+            value = uiState.password,
             label = R.string.password,
             isPasswordField = true,
             hint = "password",
             leadingIcon = Icons.Filled.Lock,
             imeAction = ImeAction.Done,
-            onValueChanged = {}
+            onValueChanged = { onEvent(LoginUiEvent.PasswordChanged(it)) }
         )
 
         Row(modifier = Modifier.fillMaxWidth()) {
@@ -127,7 +137,13 @@ fun Login() {
 fun LoggingPreview(modifier: Modifier = Modifier) {
     MiniTalesTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
-            Login()
+            Login(
+                uiState = LoginUiState(
+                    email = "example@domain.com",
+                    password = "12345"
+                ),
+                onEvent = {}
+            )
         }
     }
 }
