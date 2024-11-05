@@ -21,7 +21,7 @@ class MiniTalesHttpClientBuilder {
 
     private var protocol: URLProtocol? = null
     private var host: String = "127.0.0.1"
-    private var port: Int = 8080
+    private var port: Int? = null
 
     fun protocol(protocol: URLProtocol) = apply { this.protocol = protocol }
 
@@ -44,7 +44,7 @@ class MiniTalesHttpClientBuilder {
                 url {
                     this.protocol = this@MiniTalesHttpClientBuilder.protocol ?: throw Error("Url protocol can't be empty")
                     this.host = this@MiniTalesHttpClientBuilder.host
-                    this.port = this@MiniTalesHttpClientBuilder.port
+                    this@MiniTalesHttpClientBuilder.port?.let { port = it }
                 }
                 header(HttpHeaders.ContentType, "application/json")
             }
