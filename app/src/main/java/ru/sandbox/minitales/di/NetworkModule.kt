@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
 import io.ktor.http.URLProtocol
+import ru.sandbox.minitales.BuildConfig
 import ru.sandbox.minitales.network.MiniTalesHttpClientBuilder
 import ru.sandbox.minitales.network.RequestHandler
 
@@ -17,7 +18,7 @@ class NetworkModule {
     fun provideHttpClient(): HttpClient =
         MiniTalesHttpClientBuilder()
             .protocol(URLProtocol.HTTP)
-            .host("")
+            .host(BuildConfig.MINI_TALES_HOST)
             .build()
 
     @Provides

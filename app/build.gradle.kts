@@ -20,12 +20,21 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            buildConfigField("String", "MINI_TALES_HOST", "Not given")
+        }
+
+        debug {
+            buildConfigField("String", "MINI_TALES_HOST", "127.0.0.1")
         }
     }
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
 }
@@ -33,6 +42,7 @@ android {
 dependencies {
     implementation(projects.theme)
     implementation(projects.features.auth)
+    implementation(projects.network)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
