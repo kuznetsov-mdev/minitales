@@ -42,6 +42,8 @@ android {
 dependencies {
     implementation(projects.theme)
     implementation(projects.features.auth)
+    implementation(projects.features.auth.data)
+    implementation(projects.features.auth.domain)
     implementation(projects.network)
 
     implementation(libs.androidx.core.ktx)
