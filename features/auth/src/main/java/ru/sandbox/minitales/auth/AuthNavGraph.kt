@@ -1,6 +1,6 @@
 package ru.sandbox.minitales.auth
 
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -27,7 +27,7 @@ fun NavGraphBuilder.authNavGraph(
         }
 
         composable(AuthScreen.Login.route) {
-            LoginScreen(viewModel())
+            LoginScreen(hiltViewModel())
         }
     }
 }
