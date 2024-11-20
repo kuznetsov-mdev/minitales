@@ -24,11 +24,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "MINI_TALES_HOST", "Not given")
+            buildConfigField("String", "MINI_TALES_HOST", "No value")
         }
 
         debug {
-            buildConfigField("String", "MINI_TALES_HOST", "127.0.0.1")
+            buildConfigField("String", "MINI_TALES_HOST", "\"192.168.0.88\"")
         }
     }
 
@@ -41,10 +41,10 @@ android {
 
 dependencies {
     implementation(projects.theme)
+    implementation(projects.network)
     implementation(projects.features.auth)
     implementation(projects.features.auth.data)
     implementation(projects.features.auth.domain)
-    implementation(projects.network)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

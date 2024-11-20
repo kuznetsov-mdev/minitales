@@ -101,7 +101,9 @@ fun Login(
                 modifier = Modifier
                     .weight(1f)
                     .padding(start = 16.dp),
-                onClick = {}
+                onClick = {
+                    onEvent.invoke(LoginUiEvent.Login)
+                }
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_arrow_forward),

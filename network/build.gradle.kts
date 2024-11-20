@@ -11,6 +11,4 @@ dependencies {
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization)
     implementation(libs.ktor.auth)
-
-    implementation(libs.logback.classic)
 }
