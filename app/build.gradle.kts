@@ -24,7 +24,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "MINI_TALES_HOST", "Not given")
+            buildConfigField("String", "MINI_TALES_HOST", "\"192.168.0.88\"")
         }
 
         debug {
