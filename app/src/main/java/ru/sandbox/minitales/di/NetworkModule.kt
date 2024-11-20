@@ -19,6 +19,7 @@ class NetworkModule {
         MiniTalesHttpClientBuilder()
             .protocol(URLProtocol.HTTP)
             .host(BuildConfig.MINI_TALES_HOST)
+            .port(8080)
             .build()
 
     @Provides
