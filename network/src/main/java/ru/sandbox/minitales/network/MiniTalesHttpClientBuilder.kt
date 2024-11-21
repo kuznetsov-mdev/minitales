@@ -15,9 +15,13 @@ import io.ktor.client.request.header
 import io.ktor.http.HttpHeaders
 import io.ktor.http.URLProtocol
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.coroutines.flow.first
 import kotlinx.serialization.json.Json
+import ru.sandbox.minitales.storage.SessionHandler
 
-class MiniTalesHttpClientBuilder {
+class MiniTalesHttpClientBuilder(
+    private val sessionHandler: SessionHandler
+) {
 
     private var protocol: URLProtocol? = null
     private var host: String = "127.0.0.1"
@@ -62,10 +66,7 @@ class MiniTalesHttpClientBuilder {
             install(Auth) {
                 bearer {
                     loadTokens {
-                        BearerTokens("", "")
-                    }
-                    refreshTokens {
-                        BearerTokens("", "")
+                        BearerTokens(sessionHandler.getCurrentUser().first().authKey, "")
                     }
                 }
             }
@@ -81,9 +82,3 @@ class MiniTalesHttpClientBuilder {
         }
     }
 }
-
-val builder = MiniTalesHttpClientBuilder()
-    .port(8080)
-    .host("")
-    .protocol(URLProtocol.HTTP)
-    .build()
