@@ -8,7 +8,7 @@ data class CurrentUser(
 )
 
 interface SessionHandler {
-    suspend fun setCurrentUser(id: Int, authKey: String)
+    suspend fun setCurrentUser(id: Int, authKey: String?)
 
     fun getCurrentUser(): Flow<CurrentUser>
 

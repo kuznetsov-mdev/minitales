@@ -9,6 +9,8 @@ import io.ktor.http.URLProtocol
 import ru.sandbox.minitales.BuildConfig
 import ru.sandbox.minitales.network.MiniTalesHttpClientBuilder
 import ru.sandbox.minitales.network.RequestHandler
+import ru.sandbox.minitales.storage.DataStoreSessionHandler
+import ru.sandbox.minitales.storage.SessionHandler
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -24,4 +26,8 @@ class NetworkModule {
 
     @Provides
     fun provideRequestHandler(client: HttpClient): RequestHandler = RequestHandler(client)
+
+    @Provides
+    fun provideSessionHandler(dataStoreSessionHandler: DataStoreSessionHandler): SessionHandler =
+        dataStoreSessionHandler
 }

@@ -16,7 +16,7 @@ private val Context.userDataStore: DataStore<User> by dataStore(
 class DataStoreSessionHandler @Inject constructor(
     @ApplicationContext private val context: Context
 ) : SessionHandler {
-    override suspend fun setCurrentUser(id: Int, authKey: String) {
+    override suspend fun setCurrentUser(id: Int, authKey: String?) {
         context.userDataStore.updateData {
             it.toBuilder()
                 .setAuthKey(authKey)
