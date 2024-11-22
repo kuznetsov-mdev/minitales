@@ -19,10 +19,11 @@ class LoginUseCase @Inject constructor(
         return when (val result = authRepository.login(request)) {
             is NetworkResult.Error -> result.toResourceError()
             is NetworkResult.Success -> {
-                sessionHandler.setCurrentUser(result.result.data.id, result.result.data.authToken)
-                Resource.Success(mapper.map(result.result.data))
+                with(result.result.data) {
+                    sessionHandler.setCurrentUser(id, authToken)
+                    Resource.Success(mapper.map(this))
+                }
             }
-
         }
     }
 }
