@@ -17,8 +17,12 @@ import ru.sandbox.minitales.storage.SessionHandler
 class NetworkModule {
 
     @Provides
-    fun provideHttpClient(): HttpClient =
-        MiniTalesHttpClientBuilder()
+    fun provideSessionHandler(dataStoreSessionHandler: DataStoreSessionHandler): SessionHandler =
+        dataStoreSessionHandler
+
+    @Provides
+    fun provideHttpClient(sessionHandler: SessionHandler): HttpClient =
+        MiniTalesHttpClientBuilder(sessionHandler)
             .protocol(URLProtocol.HTTP)
             .host(BuildConfig.MINI_TALES_HOST)
             .port(8080)
@@ -27,7 +31,5 @@ class NetworkModule {
     @Provides
     fun provideRequestHandler(client: HttpClient): RequestHandler = RequestHandler(client)
 
-    @Provides
-    fun provideSessionHandler(dataStoreSessionHandler: DataStoreSessionHandler): SessionHandler =
-        dataStoreSessionHandler
+
 }
