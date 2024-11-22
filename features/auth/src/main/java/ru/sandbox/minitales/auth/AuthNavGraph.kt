@@ -22,7 +22,11 @@ fun NavGraphBuilder.authNavGraph(
 ) {
     navigation(startDestination = AuthScreen.Splash.route, route = authRoute) {
         composable(AuthScreen.Splash.route) {
-            SplashScreen()
+            SplashScreen(
+                viewModel = hiltViewModel(),
+                navController = navController,
+                onAuthSuccess = onAuthSuccess
+            )
             navController.navigate(AuthScreen.Login.route)
         }
 
