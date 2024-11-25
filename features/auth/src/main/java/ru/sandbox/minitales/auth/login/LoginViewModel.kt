@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import ru.sandbox.minitales.auth.domain.LoginUseCase
 import ru.sandbox.minitales.auth.login.data.LoginUiEvent
 import ru.sandbox.minitales.auth.login.data.LoginUiState
+import ru.sandbox.minitales.auth.validators.AuthParam
 import ru.sandbox.minitales.auth.validators.ValidatorFactory
 import javax.inject.Inject
 
@@ -33,13 +34,29 @@ class LoginViewModel @Inject constructor(
             }
 
             is LoginUiEvent.Login -> {
-                login()
+                if (areInputsValid()) {
+                    login()
+                }
             }
 
             else -> {
 
             }
         }
+    }
+
+    private fun areInputsValid(): Boolean {
+        val email = uiState.value.email
+        val password = uiState.value.password
+        val emailError = validatorFactory.get(AuthParam.EMAIL).validate(email)
+        val passwordError = validatorFactory.get(AuthParam.PASSWORD).validate(password)
+
+        _uiState.value = _uiState.value.copy(
+            emailError = emailError.errorMessage,
+            passwordError = passwordError.errorMessage
+        )
+        val hasError = listOf(emailError, passwordError).any { it.isValid.not() }
+        return hasError.not()
     }
 
     fun login() = viewModelScope.launch {
