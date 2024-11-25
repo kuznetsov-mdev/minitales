@@ -64,6 +64,7 @@ fun Login(
         AppTextField(
             value = uiState.email,
             label = R.string.email,
+            error = uiState.emailError,
             hint = "yourname@domain.com",
             leadingIcon = Icons.Filled.Email,
             imeAction = ImeAction.Next,
@@ -73,6 +74,7 @@ fun Login(
         AppTextField(
             value = uiState.password,
             label = R.string.password,
+            error = uiState.passwordError,
             isPasswordField = true,
             hint = "password",
             leadingIcon = Icons.Filled.Lock,

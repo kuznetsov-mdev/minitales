@@ -17,6 +17,7 @@ android {
 dependencies {
     implementation(projects.theme)
     implementation(projects.features.auth.domain)
+    implementation(projects.common.utils)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
