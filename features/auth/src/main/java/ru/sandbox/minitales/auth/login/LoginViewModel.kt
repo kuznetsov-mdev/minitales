@@ -11,11 +11,13 @@ import kotlinx.coroutines.launch
 import ru.sandbox.minitales.auth.domain.LoginUseCase
 import ru.sandbox.minitales.auth.login.data.LoginUiEvent
 import ru.sandbox.minitales.auth.login.data.LoginUiState
+import ru.sandbox.minitales.auth.validators.ValidatorFactory
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase,
+    private val validatorFactory: ValidatorFactory
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(LoginUiState())
     val uiState: StateFlow<LoginUiState> = _uiState.asStateFlow()
